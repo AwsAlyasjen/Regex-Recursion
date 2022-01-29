@@ -4,18 +4,14 @@
 
 /* Write a function that take a string and return true if the string only contain uppercase and lowercase
 characters (no numbers and symbols) and it should end with capital A else return false */
-function capitalA(s){
-   
-    
-    
-    for (const character of s) {
-        if (character.toUpperCase() == character.toLowerCase()&&character.charAt(s.length - 1).toStrictEqual=="A"){ //continue;
-         return true;}
-      
+function capitalA(s) {
+    let alphaUpLo = /([a-z]|[A-Z])/g, symp = /[!@#$%&()_*\-=\[\]{};':"\\|,.<>\/?]+|\d/g, lastChar = /A$/g, string = alphaUpLo.test(s), testing = symp.test(s), capital = lastChar.test(s);
+
+    if (string == true && testing == false && capital == true) {
+        return true
+    } else {
+        return false
     }
-
-    return false;
-
 }
    
 
@@ -37,17 +33,15 @@ required extention are jpg, jpeg and png.
 
 */
 
-function imagesSearcher(text){
+function imagesSearcher(text) {
     let arr = [];
-    for (let i = 0; i < array.length; i++) {
-        if (!text.match(/.(jpg|jpeg|png|gif)$/i)){
-            return false;}
-            else 
-            arr[i]=imagesSearcher(text);
-        
-    }
-   
-    return arr
+    let imgage = text.split(" ");
+    imgage.forEach(element => {
+        if (element.match(/([a-zA-Z0-9\s_\\.\-\(\):])+(.jpg|.jpeg|.png)$/g) != null) {
+            arr.push(element);
+        }
+    });
+    return arr;
 }
 
 
